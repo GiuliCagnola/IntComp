@@ -1,0 +1,49 @@
+cada particula i tiene:
+* posición actual x_i(t)
+* velocidad actual v_i(t)
+* mejor posición histórica y_i(t) (en la que obtuvo el mejor fitness hasta ese momento)
+* mejor posición histórica global o de su vecindario yprima_i(t)
+
+pseudocodigo - variante global
+crear e inicializar los vectores de posición aleatoriamente
+x_ij(0) = x_jmin + r_j(x_jmax-x_jmin) con 0<=r_j<=1
+v_ij(0) = 0 #velocidades iniciales nulas
+
+repetir
+    para cada particula i
+        #SETEAR LA MEJOR POSICIÓN LOCAL
+        #comparar la función objetivo evaluada en la particula con la función objetivo evaluada en la mejor posición histórica de esa partícula
+        #se minimiza la función objetivo (comparo por menor)
+        si f(x_i)<f(y_i) entonces
+            y_i = x_i #actualizar mejor posición histórica de la partícula
+        finSi
+        #SETEAR LA MEJOR POSICIÓN GLOBAL 
+        #comparar la función de objetivo evaluada en la mejor posición de la partícula con la función evaluada en la mejor posición histórica del emjambre
+        si f(y_i)<f(yprima_i)
+            yprima_i = y_i #actualizar mejor posición del enjambre
+        finSi
+    finPara
+    #funciones estocásticas
+    r1 = random
+    r2 = random
+    #funciones para los coeficientes (deben cambiar en cada iteración)
+    c1 = ... (debe ir de 2.5 a 0.5) #mayor exploración del espacio de búsqueda
+    c2 = ... (debe ir de 0.5 a 2.5) #favorecer la convergencia 
+    para cada particula i
+        #ACTUALIZAR VELOCIDAD
+      
+
+        experiencia_personal = c1*r1_j(t)*(y_ij(t)-x_ij(t))
+        experiencia_enjambre = c2*r2_j(t)*(yprima_j(t)-x_ij(t))
+         v_ij(t+1)= v_ij(t) + experiencia_personal + experiencia_enjambre
+
+        #ACTUALIZAR POSICIÓN 
+        x_i(t+1) = x_i(t) + v_ij(t+1)
+       
+    finPara
+mientras la condición de parada sea verdadera (mismos criterios de corte que en AG)
+
+
+
+
+
